@@ -6,9 +6,9 @@ if playing != "yes":
     quit()
 if playing == "yes":
     print("Alright")
-random_word = list["help", "hello", "how", "hit", "howdy"]
+#random_word = list["help", "hello", "how", "hit", "howdy"]
 tries = 6
-#random_word = "help"
+random_word = "help"
 answer = None
 letters_in_word = list(random_word)
 letters_guessed = list()
