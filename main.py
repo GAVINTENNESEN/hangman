@@ -1,13 +1,19 @@
 name = input("What is your name? ")
-u = name
-p = u.capitalize()
-playing = input(str("Do you want to play hangman " + p + "? ")).lower()
+name_upper = name.capitalize()
+playing = input(str("Do you want to play hangman " + name_upper + "? ")).lower()
 if playing != "yes":
     quit()
 if playing == "yes":
     print("Alright")
 #random_word = list["help", "hello", "how", "hit", "howdy"]
 tries = 6
+mode = input("Do you want to play easy(8 tries), medium(6 tries), or hard(4 tries)? ").lower()
+if mode == 'easy':
+    tries += 2
+if mode == 'hard':
+    tries -= 2
+else:
+    tries
 random_word = "help"
 answer = None
 letters_in_word = list(random_word)
@@ -18,6 +24,9 @@ while answer != random_word:
         print("Too many letters!!!  Try again!")
         continue
     letters_guessed.append(answer)
+    if tries == 1:
+        print("Your out of tries!")
+        quit()
     for letter in letters_in_word:
         if letter in letters_guessed:
             print(letter)
@@ -30,7 +39,4 @@ while answer != random_word:
         tries -= 1
         print("Try again, you have " + str(tries) + " tries.")
     if answer in letters_in_word:
-        print("You found a letter!!")
-        if tries < 1:
-            print("Your out of tries!")
-            quit()
+        print("The letter " + answer.upper() + " was correct!!!")
