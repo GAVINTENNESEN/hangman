@@ -7,7 +7,8 @@ if playing == "yes":
     print("Alright")
 #random_word = list["help", "hello", "how", "hit", "howdy"]
 tries = 6
-mode = input("Do you want to play easy(8 tries), medium(6 tries), or hard(4 tries)? ").lower()
+mode = input("Do you want to play easy(8 trie"
+             "), medium(6 tries), or hard(4 tries)? ").lower()
 if mode == 'easy':
     tries += 2
 if mode == 'hard':
@@ -25,7 +26,7 @@ while answer != random_word:
         continue
     letters_guessed.append(answer)
     if tries == 1:
-        print("Your out of tries!")
+        print("Your out of tries, the word was " + random_word.upper() + ".")
         quit()
     for letter in letters_in_word:
         if letter in letters_guessed:
