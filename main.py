@@ -1,3 +1,5 @@
+import random
+
 name = input("What is your name? ")
 name_upper = name.capitalize()
 playing = input(str("Do you want to play hangman " + name_upper + "? ")).lower()
@@ -5,17 +7,15 @@ if playing != "yes":
     quit()
 if playing == "yes":
     print("Alright")
-#random_word = list["help", "hello", "how", "hit", "howdy"]
+random_word_list = list(["help", "hello", "how", "hit", "howdy"])
 tries = 6
 mode = input("Do you want to play easy(8 trie"
              "), medium(6 tries), or hard(4 tries)? ").lower()
 if mode == 'easy':
     tries += 2
-if mode == 'hard':
+elif mode == 'hard':
     tries -= 2
-else:
-    tries
-random_word = "help"
+random_word = random_word_list[random.randint(0, len(random_word_list))]
 answer = None
 letters_in_word = list(random_word)
 letters_guessed = list()
@@ -28,12 +28,18 @@ while answer != random_word:
     if tries == 1:
         print("Your out of tries, the word was " + random_word.upper() + ".")
         quit()
+    visible_word = ''
     for letter in letters_in_word:
         if letter in letters_guessed:
-            print(letter)
+            visible_word += letter
         else:
-            print('_')
-    if letters_guessed == letters_in_word:
+            visible_word += '_'
+    print(visible_word)
+    whole_word = True
+    for letter in letters_in_word:
+        if letter not in letters_guessed:
+            whole_word = False
+    if whole_word:
         print("Correct!! You got the whole word!!")
         quit()
     if answer not in letters_in_word:
