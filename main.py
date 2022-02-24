@@ -7,7 +7,14 @@ if playing != "yes":
     quit()
 if playing == "yes":
     print("Alright")
-random_word_list = list(["help", "hello", "how", "hit", "howdy"])
+
+# Get word list
+random_word_list = list()
+with open(file='Words.txt', mode='r') as f:
+    data = f.readlines()
+    for row in data:
+        random_word_list.append(row.strip('\n'))
+
 tries = 6
 mode = input("Do you want to play easy(8 trie"
              "), medium(6 tries), or hard(4 tries)? ").lower()
@@ -28,6 +35,7 @@ while answer != random_word:
     if tries == 1:
         print("Your out of tries, the word was " + random_word.upper() + ".")
         quit()
+    # visible word will be used to track the whole state of the word so it can be printed at one shot
     visible_word = ''
     for letter in letters_in_word:
         if letter in letters_guessed:
@@ -35,6 +43,7 @@ while answer != random_word:
         else:
             visible_word += '_'
     print(visible_word)
+    # whole word is used to see if we've matched the whole word or not
     whole_word = True
     for letter in letters_in_word:
         if letter not in letters_guessed:
